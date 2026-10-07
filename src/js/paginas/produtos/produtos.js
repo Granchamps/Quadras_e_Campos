@@ -1,42 +1,144 @@
 import './produtos.css'
-import listaDeProdutos from '../../dadosMockados/dados.js' 
+import listaDeHorarios from '../../dadosMockados/dados.js'
 import mapa from '../../paginas/mapa.js'
-function produtos(app, categoria) {
-  const lista = categoria ? listaDeProdutos.filter(prod => prod.categoria === categoria) : listaDeProdutos
-  app.innerHTML = `
-    <h1>${categoria ? categoria : "Todos os produtos"}</h1>
-    ${ 
-        lista.length === 0 ? "<p>Nenhum produto nesta categoria nesta semana.</p>" : lista.map(cartao).join("") 
-     }`
-        adicionarEvento(app)
-        location.hash = "#produtos"
+
+function resultados(app, esporte = "", ordenacao = "") {
+
+    let lista = esporte
+        ? listaDeHorarios.filter(
+            horario =>
+                horario.esporte.toLowerCase() === esporte.toLowerCase()
+        )
+        : [...listaDeHorarios]
+
+    if (ordenacao === "preco") {
+        lista.sort((a, b) => a.preco - b.preco)
+    }
+
+    if (ordenacao === "horario") {
+        lista.sort((a, b) =>
+            a.horaInicio.localeCompare(b.horaInicio)
+        )
+    }
+
+    app.innerHTML = `
+        <h1>
+            ${esporte ? `Quadras de ${esporte}` : "Quadras disponíveis"}
+        </h1>
+
+        <div class="ordenacao">
+            <label for="ordenar">Ordenar por:</label>
+
+            <select id="ordenar">
+                <option value="" ${ordenacao === "" ? "selected" : ""}>
+                    Selecione
+                </option>
+
+                <option value="preco" ${ordenacao === "preco" ? "selected" : ""}>
+                    Menor preço
+                </option>
+
+                <option value="horario" ${ordenacao === "horario" ? "selected" : ""}>
+                    Horário mais cedo
+                </option>
+            </select>
+        </div>
+
+        <div class="lista-resultados">
+            ${
+                lista.length === 0
+                    ? "<p>Nenhuma quadra encontrada.</p>"
+                    : lista.map(cartao).join("")
+            }
+        </div>
+    `
+
+    adicionarEvento(app, esporte)
 }
 
-function cartao(produto) {
-  return `<div class="produto">
+function cartao(horario) {
+
+    return `
+        <div class="produto" data-id="${horario.id}">
+
             <div class="produto-imagem">
-                <img src="${produto.img}" alt="A imagem de um produto" class="imagem-produto">
-                <h3>${produto.nome}</h3>
+
+                ${
+                    horario.img
+                        ? `
+                            <img
+                                src="${horario.img}"
+                                alt="Imagem de ${horario.estabelecimento}"
+                                class="imagem-produto"
+                            >
+                        `
+                        : ""
+                }
+
+                <h3>${horario.estabelecimento}</h3>
+
+                <p>${horario.esporte}</p>
+
+                <p>${horario.bairro}</p>
+
             </div>
+
             <div class="preco-distancia">
-                <p class="preco-especial">R$ ${produto.preco}</p>
-                <p> ${produto.distancia} mt</p>
+
+                <p class="preco-especial">
+                    R$ ${horario.preco.toFixed(2)}
+                </p>
+
+                <p>
+                    ${horario.data}
+                </p>
+
+                <p>
+                    ${horario.horaInicio}
+                </p>
+
+                <p>
+                    ${horario.duracao} minutos
+                </p>
+
             </div>
-        </div>`
+
+        </div>
+    `
 }
 
-function adicionarEvento(app){
-document.querySelectorAll(".produto").forEach(card =>
-  card.addEventListener("click", () => {
-    const escolhido = listaDeProdutos
-      .find(p => p.nome === card.dataset.nome)
-    mapa.pagina(app, escolhido)
-  }))
+function adicionarEvento(app, esporte) {
+
+    const selectOrdenacao = document.getElementById("ordenar")
+
+    selectOrdenacao.addEventListener("change", () => {
+
+        const ordenacao = selectOrdenacao.value
+
+        resultados(app, esporte, ordenacao)
+
+    })
+
+    document.querySelectorAll(".produto").forEach(card => {
+
+        card.addEventListener("click", () => {
+
+            const id = Number(card.dataset.id)
+
+            const escolhido = listaDeHorarios.find(
+                horario => horario.id === id
+            )
+
+            mapa.pagina(app, escolhido)
+
+        })
+
+    })
 }
 
-export default { 
+export default {
     url: "#produtos",
     label: "",
     icon: "shopping-basket",
-    pagina: produtos
- };
+    pagina: resultados
+}
