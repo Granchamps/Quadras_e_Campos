@@ -2,42 +2,39 @@ import produtos from '../paginas/produtos/produtos.js'
 function buscar(app){
     app.innerHTML = `
         <div class="container-buscar">
-            <h2>Radar de Promoções</h2>
-            <p class="subtitulo-buscar"> O que Você quer Comprar mais barato?</p>
+            <h2>Quadras e Campos</h2>
+            <p class="subtitulo-buscar"> Qual esporte você quer praticar?</p>
             <div class="grupo-input">
             <label for="input-busca"><i data-lucide="search" id="icone-busca"></i> </label>
                 <input 
                     type="text" 
                     id="input-busca" 
-                    placeholder="Produto ou marca"
-                    aria-label="campo busca de produto"
+                    placeholder="Esporte, local ou bairro"
+                    aria-label="campo busca de esporte, local ou bairro"
                 >
                 <button id="btn-busca"> 
                     <i data-lucide="arrow-right"></i>
                 </button>
                 
             </div>
-            <p class="busca-atencao">Preços da semana de 10 a 16 de agosto, enviado por que mestá no mercado</p>
-            <div class="categorias-busca">
-                <p>Categoria</p>
-                <ul class="categoria-lista">
-                    <li class="lista-categoria">
-                        Mercearia
+            <p class="busca-atencao"></p>
+            <div class="esportes-busca">
+                <p>Esportes</p>
+                <ul class="esportes-lista">
+                    <li class="lista-esportes">
+                        Futebol
                     </li>
-                    <li class="lista-categoria">
-                        Carnes
+                    <li class="lista-esportes">
+                        Basquete
                     </li>
-                    <li class="lista-categoria">
-                        Hortifrúti
+                    <li class="lista-esportes">
+                        Vôlei
                     </li>
-                    <li class="lista-categoria">
-                        Bebidas
+                    <li class="lista-esportes">
+                        Tênis
                     </li>
-                    <li class="lista-categoria">
-                        Limpeza
-                    </li>
-                    <li class="lista-categoria">
-                        Higiene
+                    <li class="lista-esportes">
+                        Handebol
                     </li>
                 </ul>
             </div>
@@ -50,12 +47,12 @@ function buscar(app){
 
 function adicionarEvento(app){
     const botaoBusca = document.getElementById("btn-busca")
-    const listaCategoria = document.querySelectorAll(".lista-categoria")
+    const listaEsportes = document.querySelectorAll(".lista-esportes")
     botaoBusca.addEventListener("click",()=>{
        produtos.pagina(app)
     })
     
-    listaCategoria.forEach(item => item.addEventListener("click", ()=>{
+    listaEsportes.forEach(item => item.addEventListener("click", ()=>{
         produtos.pagina(app, item.textContent.trim())
     }))
 }
