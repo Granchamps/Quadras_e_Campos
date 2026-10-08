@@ -8,7 +8,7 @@ function inicio(app) {
       <div class="page-header">
         <p class="eyebrow">Quadras e Campos</p>
         <h1>Encontre o seu próximo jogo.</h1>
-        <p>Consulte horários disponíveis de quadras e campos near você.</p>
+        <p>Consulte horários disponíveis de quadras e campos perto de você.</p>
       </div>
 
       <form class="search-panel card" id="form-busca">
