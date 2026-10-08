@@ -1,70 +1,66 @@
-# Ki-Oferta
+# Desafio 1: O mesmo esqueleto, outro negócio
 
-> **Projeto em construção.** Este repositório está em desenvolvimento ativo como projeto de estudos (FATEC) e ainda não representa uma versão final.
+> **Disciplina:** Eletiva Programação para Dispositivos Moveis (WEB) / Front-end
+>
+> **Instituição:** FATEC Mogi das Cruzes
+>
+> **Curso:** Análise e Desenvolvimento de Sistemas
 
-## Sobre o projeto
+## 📌 Sobre o Projeto
 
-O Ki-Oferta é um modelo de aplicação criado com duas frentes de aprendizado em mente:
+Este projeto consiste na implementação de uma aplicação web de página única (*Single Page Application* - SPA), sem o uso de frameworks JavaScript ou CSS, mantendo o padrão arquitetural e de modularização estruturado durante as aulas (modelo **KiOferta**).
 
-1. **Desenvolvimento web moderno** — uso de ferramentas atuais de build e um fluxo de trabalho baseado em módulos JavaScript (ES Modules), organização de código em componentes/páginas e boas práticas de estruturação de projeto front-end.
-2. **Conceitos de desenvolvimento de aplicativos** — o mesmo código-fonte web é empacotado como um aplicativo mobile nativo (Android/iOS) usando o [Capacitor](https://capacitorjs.com/), permitindo estudar como uma aplicação web se transforma em um app instalável, com acesso a APIs nativas do dispositivo (câmera, splash screen, etc.).
+A aplicação utiliza dados mockados, roteamento por *hash* (`window.location.hash`), estilização exclusiva via **Flexbox** (com variáveis CSS em `tokens.css`), e componentes modulares dinâmicos em JavaScript ES6+.
 
-A ideia é usar um único projeto para explorar, ao mesmo tempo, o "mundo web" e o "mundo mobile", entendendo onde as duas abordagens se encontram e onde elas divergem.
+## 👥 Integrantes do Grupo e Divisão de Tarefas
 
-## Padrão utilizado
+Integrante A - Allan Granchamps Fernandes Vieira
+Integrante B - Joao Vitor Gomes Vasconcelos
+Integrante C - Thiago do Espirito Santo Corrêa
 
-O projeto segue uma estrutura simples de **SPA (Single Page Application) em JavaScript puro (vanilla JS)**, sem frameworks como React, Vue ou Angular. Os principais pontos do padrão são:
+## Base do Projeto:
+Desafio 1 — O mesmo esqueleto, outro negócio* (FATEC Mogi das Cruzes).
 
-- **Roteamento por hash**: a navegação entre telas é controlada pelo hash da URL (`#buscar`, `#mapa`, `#enviar`, etc.), interceptado pelo evento `hashchange` em [src/js/main.js](src/js/main.js).
-- **Páginas como módulos**: cada tela vive em seu próprio arquivo dentro de [src/js/paginas/](src/js/paginas/) e exporta um objeto com sua `url` e uma função `pagina()` responsável por renderizar o conteúdo dentro do elemento `#app`.
-- **Mapa de rotas central**: [src/js/rotas/rotas.js](src/js/rotas/rotas.js) reúne todas as páginas disponíveis em uma lista única, usada tanto pelo roteador quanto pela navbar.
-- **Navbar dinâmica**: o componente em [src/js/navbar/navbar.js](src/js/navbar/navbar.js) é montado a partir do mesmo mapa de rotas, evitando duplicação entre navegação e páginas.
-- **Build com Vite**: o [Vite](https://vitejs.dev/) cuida do bundling e do servidor de desenvolvimento, gerando a pasta `dist/` que o Capacitor usa como `webDir` para empacotar o app nativo.
+## Objetivo:
+Construir um aplicativo web de seis telas, com dados mockados, seguindo a mesma arquitetura do **KiOferta**, além de documentar o processo em um relatório técnico de 3 a 5 páginas.
 
-## Como rodar o projeto
+## 1. Definir o que o Aplicativo vai Resolver
 
-### Pré-requisitos
+### Problema
+Descobrir qual quadra ou campo está disponível no sábado exige ligar para vários estabelecimentos. O aplicativo facilita a busca e a comparação de horários disponíveis e seus respectivos preços.
 
-- [Node.js](https://nodejs.org/) instalado (recomendado LTS mais recente)
-- npm (instalado junto com o Node.js)
+### Pergunta Central
+"Onde posso encontrar uma quadra ou campo disponível no horário desejado, por um preço que caiba no meu orçamento?"
 
-### Passo a passo
+### Escopo
+Descoberta e comparação de horários anunciados por estabelecimentos esportivos, **sem reserva ou pagamento reais**.
 
-1. Clone o repositório e acesse a pasta do projeto:
+### Perfis de Usuário (Situações de Uso)
+1. **Grupo de Amigos:** Quer jogar futebol no sábado à tarde e procura um campo com preço acessível.
+2. **Praticante de Esporte:** Procura uma quadra de vôlei ou basquete em determinado bairro e horário.
+3. **Responsável por Estabelecimento:** Publica um horário disponível, informa o valor e permite que outras pessoas encontrem a oferta.
 
-   ```bash
-   git clone https://github.com/faustinopsy/ki-oferta
-   cd ki-oferta
-   ```
+### Escopo da Primeira Versão
+- Buscar horários por esporte, localidade e texto.
+- Listar ofertas de horários disponíveis.
+- Ordenar os resultados por preço e outro critério.
+- Consultar detalhes de uma oferta.
+- Publicar um novo horário disponível.
+- Entrar em uma conta simulada e visualizar os próprios registros.
 
-2. Instale as dependências:
+> ⚠️ **Limite Importante:** Não há backend, banco de dados ou autenticação real. Os dados residem em arquivos JavaScript locais e não precisam persistir após o recarregamento da página (F5).
 
-   ```bash
-   npm install
-   ```
+---
 
-3. Rode o projeto em modo de desenvolvimento (abre no navegador, com hot reload):
+## 2. Transformar o Tema em Funcionalidades Concretas
 
-   ```bash
-   npm run dev
-   ```
+### Exemplos de Oferta
+- **Futebol:** Campo society, sábado, 15h-16h, R$ 120/hora, Bairro Jundiapeba.
+- **Quadras Esportivas:** Quadra poliesportiva, domingo, 10h-11h, R$ 80/hora, Centro.
 
-4. Para gerar a versão de produção (usada também pelo Capacitor):
+## Execução do sistema
 
-   ```bash
-   npm run build
-   ```
+Utilização de Node.js e o Capacitor
 
-5. Para pré-visualizar o build de produção localmente:
-
-   ```bash
-   npm run preview
-   ```
-
-### Rodando como app nativo (Capacitor)
-
-Este projeto usa o [`@capacitor/create-app`](https://github.com/ionic-team/create-capacitor-app) como base. Para sincronizar o build web com os projetos nativos (Android/iOS), consulte a [documentação do Capacitor](https://capacitorjs.com/docs) — em resumo, após o `npm run build`, é necessário adicionar a plataforma desejada e sincronizar os arquivos web com o projeto nativo antes de rodar em um emulador ou dispositivo.
-
-## Status
-
-Este é um projeto didático em construção. Funcionalidades, estrutura de pastas e padrões podem mudar conforme o aprendizado avança.
+npm install
+npm run dev
