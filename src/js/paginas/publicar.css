@@ -1,0 +1,38 @@
+.page-publicar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-med);
+}
+
+.form-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-peq);
+}
+
+.form-group--row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco);
+}
+
+.form-group label {
+  font-size: var(--tipografia-peq);
+  font-weight: 700;
+}
+
+@media (min-width: 720px) {
+  .form-group--row {
+    flex-direction: row;
+  }
+
+  .form-group--row .form-group {
+    flex: 1;
+  }
+}

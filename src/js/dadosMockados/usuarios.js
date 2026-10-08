@@ -1,32 +1,32 @@
-const listaDeUsuarios = [
-    {
-        id: 1,
-        nome: "Carlos Mendes",
-        email: "carlos@exemplo.com",
-        telefone: "(11) 99999-1111",
-        tipo: "estabelecimento"
-    },
-    {
-        id: 2,
-        nome: "Juliana Costa",
-        email: "juliana@exemplo.com",
-        telefone: "(11) 99999-2222",
-        tipo: "particular"
-    },
-    {
-        id: 3,
-        nome: "Marcos Oliveira",
-        email: "marcos@exemplo.com",
-        telefone: "(11) 99999-3333",
-        tipo: "estabelecimento"
-    },
-    {
-        id: 4,
-        nome: "Ana Souza",
-        email: "ana@exemplo.com",
-        telefone: "(11) 99999-4444",
-        tipo: "particular"
-    }
+const usuarios = [
+  {
+    id: "usuario-1",
+    nome: "Arena Central Sports",
+    email: "contato@arenacentral.com",
+    telefone: "(11) 99999-1001",
+    tipo: "estabelecimento"
+  },
+  {
+    id: "usuario-2",
+    nome: "Quadra do Vale",
+    email: "atendimento@quadra-do-vale.com",
+    telefone: "(11) 99999-1002",
+    tipo: "estabelecimento"
+  },
+  {
+    id: "usuario-3",
+    nome: "Campo Verde Esportes",
+    email: "contato@campoverde.com",
+    telefone: "(11) 99999-1003",
+    tipo: "estabelecimento"
+  },
+  {
+    id: "usuario-4",
+    nome: "Poli Arena",
+    email: "atendimento@poliarena.com",
+    telefone: "(11) 99999-1004",
+    tipo: "estabelecimento"
+  }
 ];
 
-export default listaDeUsuarios;
+export default usuarios;

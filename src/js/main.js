@@ -1,19 +1,22 @@
-import { createIcons, icons } from 'lucide';
-import { mapaderotas } from './rotas/rotas.js'
-import { navbar } from './navbar/navbar.js'
+import { createIcons } from 'lucide';
+import { mapaderotas } from './rotas/rotas.js';
+import { navbar } from './navbar/navbar.js';
 
-const app = document.getElementById("app")
-navbar(mapaderotas)
+const app = document.getElementById('app');
+navbar(mapaderotas);
 
 function renderizarPagina() {
-    const hash = window.location.hash || '#buscar'
-    const rota  = mapaderotas.find(tela => tela.url === hash)
-    if (rota) {
-        rota.pagina(app)
-    }
+  const hash = window.location.hash || '#inicio';
+  const rota = mapaderotas.find(item => item.url === hash);
+
+  if (rota) {
+    rota.pagina(app);
+    return;
+  }
+
+  mapaderotas.find(item => item.url === '#404').pagina(app);
 }
-window.addEventListener("hashchange", ()=>{
-    renderizarPagina()
-})
-renderizarPagina()
-createIcons({ icons });
+
+window.addEventListener('hashchange', renderizarPagina);
+renderizarPagina();
+createIcons();
