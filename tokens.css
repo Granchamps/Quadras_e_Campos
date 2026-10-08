@@ -1,0 +1,25 @@
+:root {
+  --cor-primaria: #2f6fed;
+  --cor-primaria-escura: #1f4fb8;
+  --cor-primaria-suave: #e8efff;
+  --cor-texto: #172033;
+  --cor-muted: #687086;
+  --cor-border: #dce2ef;
+  --cor-surface: #ffffff;
+  --cor-background: #f4f7fc;
+  --cor-sucesso: #16875c;
+  --cor-erro: #c63d4d;
+  --cor-atencao: #f5a623;
+  --sombra: 0 8px 24px rgba(23, 32, 51, 0.09);
+  --raio: 16px;
+  --espaco-peq: 8px;
+  --espaco: 16px;
+  --espaco-med: 24px;
+  --espaco-grande: 40px;
+  --tipografia-peq: 0.875rem;
+  --tipografia: 1rem;
+  --tipografia-grande: 1.3rem;
+  --tipografia-titulo: 1.8rem;
+  --altura-menu: 68px;
+  --max-width: 520px;
+}
