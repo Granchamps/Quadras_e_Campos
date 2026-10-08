@@ -8,7 +8,7 @@ export function getOfertas() {
 }
 
 export function getOfertaPorId(id) {
-  return ofertas.find(oferta => oferta.id === id);
+    return ofertas.find(oferta => String(oferta.id) === String(id));
 }
 
 export function buscarOfertas({ termo = '', esporte = '', ordem = 'data' } = {}) {
