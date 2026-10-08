@@ -6,7 +6,7 @@ const app = document.getElementById('app');
 navbar(mapaderotas);
 
 function renderizarPagina() {
-  const hash = window.location.hash || '#inicio';
+  const hash = (window.location.hash || '#inicio').split('?')[0];
   const rota = mapaderotas.find(item => item.url === hash);
 
   if (rota) {
